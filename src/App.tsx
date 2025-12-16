@@ -1,8 +1,9 @@
-import { Slider, Flex, Typography, Radio, Collapse } from "antd";
+import { Slider, Flex, Typography, Radio, Collapse, Tabs, Button } from "antd";
 import type { SliderSingleProps } from "antd";
+import Search from "antd/es/transfer/search";
 import { useState } from "react";
 
-const { Title } = Typography;
+const { Title, Link } = Typography;
 
 const experience: SliderSingleProps["marks"] = {
   1: "1 год",
@@ -17,6 +18,7 @@ const category: SliderSingleProps["marks"] = {
 };
 
 const age: SliderSingleProps["marks"] = {
+  0: "0",
   18: "18",
   24: "24",
   35: "35",
@@ -134,36 +136,98 @@ const data: {
   },
 ];
 
+const Form1 = ({ setSex, sex }: { setSex(e: number): void; sex: number }) => {
+  return (
+    <>
+      <Title level={3}>Стаж</Title>
+      <Slider marks={experience} step={1} defaultValue={0} max={25} />
+      <Title level={3}>Категория</Title>
+      <Slider
+        marks={category}
+        step={1}
+        defaultValue={0}
+        max={2}
+        tooltip={{ open: false }}
+      />
+      <Title level={3}>Возраст</Title>
+      <Slider marks={age} step={1} defaultValue={0} max={65} />
+      <Title level={3}>Пол</Title>
+      <Radio.Group
+        value={sex}
+        onChange={(e) => {
+          setSex(e.target.value);
+        }}
+      >
+        <Radio value={0}>Мужчина</Radio>
+        <Radio value={1}>Женщина</Radio>
+      </Radio.Group>
+    </>
+  );
+};
+
 const App = () => {
   const [sex, setSex] = useState(0);
+  const [selectedTab, setSelectedTab] = useState("1");
+  const [value, setValue] = useState("");
 
   return (
     <Flex justify="center">
       <div style={{ maxWidth: "1240px", width: "100%", padding: "40px" }}>
-        <Title level={3}>Стаж</Title>
-        <Slider marks={experience} step={1} defaultValue={0} max={25} />
-        <Title level={3}>Категория</Title>
-        <Slider
-          marks={category}
-          step={1}
-          defaultValue={0}
-          max={2}
-          tooltip={{ open: false }}
-        />
-        <Title level={3}>Возраст</Title>
-        <Slider marks={age} step={1} defaultValue={0} min={18} max={65} />
-        <Title level={3}>Пол</Title>
-        <Radio.Group
-          value={sex}
-          onChange={(e) => {
-            setSex(e.target.value);
+        <Flex justify="flex-end">
+          <Link href="https://forms.yandex.ru/" target="_blank">
+            <Button color="primary" variant="dashed">
+              Отзывы(актуальная ссылка будет добавлена позже)
+            </Button>
+          </Link>
+        </Flex>
+        <Tabs
+          defaultActiveKey="1"
+          items={[
+            {
+              key: "1",
+              label: "Фильтры",
+              children: <Form1 sex={sex} setSex={setSex} />,
+            },
+            {
+              key: "2",
+              label: "Поиск",
+              children: (
+                <>
+                  <Title level={3}>Поиск</Title>{" "}
+                  <Search
+                    placeholder="Поиск"
+                    value={value}
+                    onChange={(e) => {
+                      setValue(e.target.value);
+                    }}
+                  />
+                </>
+              ),
+            },
+          ]}
+          onChange={(key) => {
+            setSelectedTab(key);
           }}
-        >
-          <Radio value={0}>Мужчина</Radio>
-          <Radio value={1}>Женщина</Radio>
-        </Radio.Group>
+        />
+
         {data
           .map((item) => {
+            if (selectedTab === "2") {
+              return {
+                title: item.title,
+                binefits: item.binefits.filter((item) => {
+                  return (
+                    item.title
+                      .toLocaleLowerCase()
+                      .includes(value.toLocaleLowerCase()) ||
+                    item.description
+                      .toLocaleLowerCase()
+                      .includes(value.toLocaleLowerCase())
+                  );
+                }),
+              };
+            }
+
             return {
               title: item.title,
               binefits: item.binefits.filter((item) => {

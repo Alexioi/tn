@@ -96,7 +96,12 @@ const App = () => {
         description: string;
         sex_id: null | 1 | 2;
         sex_name: string | null;
-        age: { id: number; from_age: number; to_age: number }[];
+        age: {
+          id: number;
+          from_age: number;
+          to_age: number;
+          sex_id: number | null;
+        }[];
         experience: {
           id: number;
           from_experience: number;
@@ -161,7 +166,7 @@ const App = () => {
           ></path>
         </svg>
 
-        <Title level={2}>Блок мотивации персонала</Title>
+        <Title level={2}>Карта мотивации работников ОСТ</Title>
 
         <Tabs
           defaultActiveKey="1"
@@ -239,7 +244,11 @@ const App = () => {
                   return (
                     item.age.length === 0 ||
                     item.age.find((item) => {
-                      return item.from_age <= age && item.to_age >= age;
+                      return (
+                        item.from_age <= age &&
+                        item.to_age >= age &&
+                        (item.sex_id === null || item.sex_id === sex)
+                      );
                     })
                   );
                 }),

@@ -13,7 +13,7 @@ const experience: SliderSingleProps["marks"] = {
 
 const category: SliderSingleProps["marks"] = {
   0: "Рабочий",
-  1: "Специалист",
+  1: "Специалист/Служащий",
   2: "Руководитель",
 };
 

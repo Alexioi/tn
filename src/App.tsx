@@ -215,6 +215,7 @@ const App = () => {
 
           <Tabs
             defaultActiveKey="1"
+            destroyInactiveTabPane={true}
             items={[
               {
                 key: "1",

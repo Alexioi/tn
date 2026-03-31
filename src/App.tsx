@@ -70,8 +70,8 @@ const Form1 = ({
               railHoverBg: "#48aef7",
               trackBg: "#48aef7",
               trackHoverBg: "#48aef7",
-              handleColor: "#005A9C",
-              handleActiveColor: "#005A9C",
+              handleColor: "#FD4236",
+              handleActiveColor: "#FD4236",
             },
           },
         }}

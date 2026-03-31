@@ -136,12 +136,12 @@ const App = () => {
       theme={{
         components: {
           Slider: {
-            railBg: "#000000", // Черный фон дорожки
-            railHoverBg: "#000000", // Черный цвет дорожки при наведении
-            trackBg: "#001529", // Темно-синий цвет заполнения
-            trackHoverBg: "#001529", // Темно-синий при наведении
-            handleColor: "#3C5DFF", // Темно-синий цвет ползунка
-            handleActiveColor: "#3C5DFF", // Черный цвет активного ползунка
+            railBg: "#005A9C",
+            railHoverBg: "#005A9C",
+            trackBg: "#005A9C",
+            trackHoverBg: "#005A9C",
+            handleColor: "#005A9C",
+            handleActiveColor: "#005A9C",
           },
         },
       }}

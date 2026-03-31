@@ -62,13 +62,28 @@ const Form1 = ({
         }}
       />
       <Title level={3}>Категория</Title>
-      <Slider
-        marks={category}
-        step={1}
-        defaultValue={0}
-        max={2}
-        tooltip={{ open: false }}
-      />
+      <ConfigProvider
+        theme={{
+          components: {
+            Slider: {
+              railBg: "#48aef7",
+              railHoverBg: "#48aef7",
+              trackBg: "#48aef7",
+              trackHoverBg: "#48aef7",
+              handleColor: "#005A9C",
+              handleActiveColor: "#005A9C",
+            },
+          },
+        }}
+      >
+        <Slider
+          marks={category}
+          step={1}
+          defaultValue={0}
+          max={2}
+          tooltip={{ open: false }}
+        />
+      </ConfigProvider>
       <Title level={3}>Возраст</Title>
       <Slider
         marks={age}

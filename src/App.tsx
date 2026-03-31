@@ -136,8 +136,8 @@ const App = () => {
       theme={{
         components: {
           Slider: {
-            railBg: "#005A9C",
-            railHoverBg: "#005A9C",
+            railBg: "#48aef7",
+            railHoverBg: "#48aef7",
             trackBg: "#005A9C",
             trackHoverBg: "#005A9C",
             handleColor: "#005A9C",

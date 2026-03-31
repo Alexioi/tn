@@ -138,8 +138,8 @@ const App = () => {
           Slider: {
             railBg: "#48aef7",
             railHoverBg: "#48aef7",
-            trackBg: "#005A9C",
-            trackHoverBg: "#005A9C",
+            trackBg: "#FD4236",
+            trackHoverBg: "#FD4236",
             handleColor: "#005A9C",
             handleActiveColor: "#005A9C",
           },

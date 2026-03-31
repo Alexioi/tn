@@ -56,6 +56,10 @@ const Form1 = ({
         onChange={(e) => {
           setExperience(e);
         }}
+        tooltip={{
+          open: true,
+          placement: "top",
+        }}
       />
       <Title level={3}>Категория</Title>
       <Slider
@@ -73,6 +77,10 @@ const Form1 = ({
         max={65}
         onChange={(e) => {
           setAge(e);
+        }}
+        tooltip={{
+          open: true,
+          placement: "top",
         }}
       />
       <Title level={3}>Пол</Title>
